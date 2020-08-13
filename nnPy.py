@@ -40,5 +40,6 @@ def Feedforward(X):
    
    return h
 
-def Cost(X, y, h):  
+def Cost(X, y, h):
+   # np.log(h)
    print("Homie")

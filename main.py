@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt #for plotting
-#have to install first time
+#have to install this library for first time
 # py -3.7 pip install idx2numpy
 import idx2numpy 
 #import pandas as pd
-import numpy as np
+import numpy as np # for numerical calculation with ndarray
 
 # local files
 import nnPy
@@ -17,7 +17,7 @@ y = idx2numpy.convert_from_file (
 )
 
 
-# # print(len(X3d))
+print(y.size)
 # #plot the image using pyplot
 # print(y[0])
 # plt.imshow(X3d[0])
@@ -27,8 +27,15 @@ y = idx2numpy.convert_from_file (
 # e.g: [10, 3, 3] --> [10, 9]
 X = X3d.reshape(len(X3d), -1)
 
-nnPy.Feedforward(X)
+h = nnPy.Feedforward(X)
 
+#encoding each row of 'y' in logical array
+one_hot = np.zeros((y.size, y.max()+1))
+rows = np.arange(y.size)
+one_hot[rows, y] = 1
+
+# f1 = np.matmul(y, (np.log(h)).transpose())
+# print(one_hot.shape, h.shape)
 
 
 
