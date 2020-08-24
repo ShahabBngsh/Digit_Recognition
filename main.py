@@ -4,6 +4,8 @@ import numpy as np
 import idx2numpy
 import matplotlib.pyplot as plt
 
+#local files
+import nnPy
 
 X3d = idx2numpy.convert_from_file (
    "E:\Courses\LocalRepo\Digit_Recogniser\\t10k-images-idx3-ubyte"
@@ -20,7 +22,7 @@ X_u = X3d.reshape(len(X3d), -1)
 X = X_u/255 #data normalisation
 
 #random initial weights
-W = InitRandWeights(X.shape[1], 25, y.max()+1)
+W = nnPy.InitRandWeights(X.shape[1], 25, y.max()+1)
 accuracy = []
 loss = []
 #learning rate
@@ -31,8 +33,9 @@ i=0
 print("Training ... ")
 while(i < 60): 
    
-	W, AllCost = NN_Model(X, y, W, 10, alpha)
-	prd = Predict(X, W)
+	W, AllCost = nnPy.NN_Model(X, y, W, 10, alpha)
+	prd = nnPy.Predict(X, W)
+ 
 	accuracy.append(np.mean(prd==y))
 	loss.append(np.mean(AllCost))
  
@@ -51,6 +54,7 @@ while(i < 60):
 		alpha = 3
 	elif accuracy[-1] >= np.float(0.5):
 		alpha = 4
+  
 	i+=1
 	
 #plot accuracy and loss values with each iteration
