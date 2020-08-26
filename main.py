@@ -3,7 +3,8 @@
 import numpy as np
 import idx2numpy
 import matplotlib.pyplot as plt
-
+import keyboard
+import time
 #local files
 import nnPy
 
@@ -67,4 +68,20 @@ for i in range(1, len(loss)):
   plt.pause(0.1)
   plt.legend(['Accuracy', 'Loss'])
 plt.show()
+
+# pick random pics
+print("Press 'esc' to exit", "'enter' to continue", sep='\n')
+while (not keyboard.is_pressed('esc')):
+   
+   if keyboard.is_pressed('esc'):
+      break
+   elif keyboard.is_pressed('enter'):
+      print("Press 'esc' to exit", "'enter' to continue", sep='\n')
+      index = np.random.randint(0, y.shape[0])
+      plt.imshow(X3d[index])
+      plt.title("True Label: " + str(y[index]))
+      plt.xlabel("Predicted Label: " + str(prd[index]))
+      time.sleep(0.5)
+      plt.show()
+      
 
