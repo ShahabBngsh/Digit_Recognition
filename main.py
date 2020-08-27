@@ -1,4 +1,4 @@
-
+# %%
 # Title
 import numpy as np
 import idx2numpy
@@ -70,18 +70,30 @@ for i in range(1, len(loss)):
 plt.show()
 
 # pick random pics
-print("Press 'esc' to exit", "'enter' to continue", sep='\n')
-while (not keyboard.is_pressed('esc')):
+# print("Press 'esc' to exit", "'enter' to continue", sep='\n')
+# while (not keyboard.is_pressed('esc')):
    
-   if keyboard.is_pressed('esc'):
-      break
-   elif keyboard.is_pressed('enter'):
-      print("Press 'esc' to exit", "'enter' to continue", sep='\n')
-      index = np.random.randint(0, y.shape[0])
-      plt.imshow(X3d[index])
-      plt.title("True Label: " + str(y[index]))
-      plt.xlabel("Predicted Label: " + str(prd[index]))
-      time.sleep(0.5)
-      plt.show()
-      
+#    if keyboard.is_pressed('esc'):
+#       break
+#    elif keyboard.is_pressed('enter'):
+#       print("Press 'esc' to exit", "'enter' to continue", sep='\n')
+#       index = np.random.randint(0, y.shape[0])
+#       plt.imshow(X3d[index])
+#       plt.title("True Label: " + str(y[index]))
+#       plt.xlabel("Predicted Label: " + str(prd[index]))
+#       time.sleep(0.5)
+#       plt.show()
+  
+# %%
+# confusion matrix
+classes = np.max(y) + 1
+confMat = np.zeros([classes, classes], dtype=int)
+for i in range(len(y)):
+  confMat[y[i]][prd[i]] += 1
+print(confMat)
 
+# %%
+# plot confusion matrix
+plt.matshow(confMat)
+plt.plot()
+# %%
