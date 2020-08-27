@@ -90,10 +90,22 @@ classes = np.max(y) + 1
 confMat = np.zeros([classes, classes], dtype=int)
 for i in range(len(y)):
   confMat[y[i]][prd[i]] += 1
-print(confMat)
+confMat = np.round(confMat/confMat.sum(axis=1), decimals=3)
+
 
 # %%
 # plot confusion matrix
-plt.matshow(confMat)
+fig, ax = plt.subplots(figsize=(15, 10))
+ax.matshow(confMat)
+# for edge, spine in ax.spines.items():
+# 			spine.set_visible(False)
+for (i, j), z in np.ndenumerate(confMat):
+  ax.text(i, j, z, va='center', ha='center', color='white')
+ticks = np.arange(classes)
+plt.xticks(ticks)
+plt.yticks(ticks)
+plt.title('Confusion Matrix', size=16)
+plt.xlabel('Predicted Labels', size=14)
+plt.ylabel('Actual Labels', size=14)
 plt.plot()
 # %%
