@@ -1,12 +1,14 @@
 # Digit_Recogniser
 
-> Digit Recognising using Neural Net of an 28*28 pixel images by MNIST
-> Everything was built from scratch upto the activation function
+> Digit Recognising using Neural Net of an 28*28 pixel images by MNIST.
+
+> Everything was built from scratch upto the activation function.
 ---
 
 ## Model Loss and Accuracy
 - It is designed to show how far we're from the 'ideal' solution.
 - Closer the `accuracy` value to `1`, the better it is.
+
 ![](https://i.imgur.com/gulSBtG.gif)
 ---
 
@@ -14,6 +16,7 @@
 - It shows how many images are correctly identified
 - Matrix is normalised so, values will be b/w [0, 1].
 - Ideally principal diagonal values should be 1, other values should be 0
+
 [![Confusion matrix image](https://i.imgur.com/mvnKrhA.jpg)]()
 ---
 
@@ -28,8 +31,8 @@ py -version -m pip install keyboard
 ---
 
 ## Setup
-- download MNIST dataset from <a href="https://www.kaggle.com/hojjatk/mnist-dataset"> MNIST </a>.
-- provide path to the dataset
+- download MNIST dataset from <a href="https://www.kaggle.com/hojjatk/mnist-dataset"> Kaggle</a>.
+- provide path to the dataset in main.py file
 ```python
 #Train Test split
 X3d = idx2numpy.convert_from_file (
