@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def InitRandWeights(in_f, n_h, n_o):
    """Initialise random weights with mean=0, variance = 1
@@ -115,7 +116,7 @@ def BackPass(Y, ZAs, W):
   """
   m = Y.shape[0]
   sigma3 = ZAs["a3"].T - Y
-  sigma2 = np.matmul(sigma3, W["w2"]).T*ActGrad(ZAs["a2"]) #possible bug
+  sigma2 = np.matmul(sigma3, W["w2"]).T*ActGrad(ZAs["a2"])
   sigma2 = np.delete(sigma2, 0, axis=0)
   delta2 = np.matmul(ZAs["a2"], sigma3)/m
   delta1 = np.matmul(sigma2, ZAs["a1"].T)/m
@@ -182,3 +183,24 @@ def Predict(x, W):
   h = ZAs["a3"]
   h = np.argmax(h, axis=0)
   return h
+
+def ConfusionMatrix(y_labels, pred_labels, classes):
+  
+  confMat = np.zeros([classes, classes], dtype=int)
+  for i in range(len(y_labels)):
+    confMat[y_labels[i]][pred_labels[i]] += 1
+  confMat = np.round(confMat/confMat.sum(axis=1), decimals=3)
+  return confMat
+
+def PlotConfMatrix(confMat, classes):
+  fig, ax = plt.subplots(figsize=(22, 18))
+  ax.matshow(confMat, cmap='Blues')
+  for (i, j), z in np.ndenumerate(confMat):
+    ax.text(i, j, z, va='center', ha='center', color='gray', size=20)
+  ticks = np.arange(classes)
+  plt.xticks(ticks)
+  plt.yticks(ticks)
+  plt.title('Confusion Matrix', size=16)
+  plt.xlabel('Predicted Labels', size=14)
+  plt.ylabel('Actual Labels', size=14)
+  plt.plot()
