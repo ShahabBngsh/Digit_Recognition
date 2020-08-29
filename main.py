@@ -10,7 +10,6 @@ import nnPy
 #Train Test split
 X3d = idx2numpy.convert_from_file (
   "E:\Path\to\trainingset images\\train-images-idx3-ubyte"
-
 )
 y = idx2numpy.convert_from_file (
   "E:\Path\to\trainingset labels\\train-labels-idx1-ubyte"
@@ -79,6 +78,10 @@ for i in range(1, len(loss)):
           )
   plt.plot([i-1, i], [loss[i-1], loss[i]], color='red', label='Loss')
   plt.pause(0.1)
+  plt.grid(True)
+  plt.title("Model accuracy and loss - epoch: "+str(i))
+  plt.xlabel('epoch')
+  plt.ylabel('accuracy')
   plt.legend(['Accuracy', 'Loss'])
 plt.show()
 
